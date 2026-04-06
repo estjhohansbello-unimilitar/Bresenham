@@ -72,10 +72,11 @@ let paso = 0;
  * @param {number} err - Error actual
  * @param {number} e2 - Valor auxiliar (2*err)
  */
-function agregarFila(x, y, err, e2) {
+function agregarFila(x, y, err, e2) { // funcion que agrega una nueva fila a la tabla con los valores actuales del algoritmo
 
+    //selecciona el cuerpo de la tabla donde se agregarán las filas
     const tabla = document.querySelector("#tabla tbody");
-
+    //crea la fila
     const fila = `
         <tr>
             <td>${paso++}</td>
@@ -85,6 +86,58 @@ function agregarFila(x, y, err, e2) {
             <td>${e2}</td>
         </tr>
     `;
-
+//agrega una nueva fila al cuerpo de la tabla ya existente 
     tabla.innerHTML += fila;
+}
+//Algoritmo de Bresenham para dibujar una línea entre dos puntos (x0, y0) y (x1, y1) 
+/**
+ * Implementación del algoritmo de Bresenham.
+ * Calcula los puntos de una línea entre dos coordenadas.
+ * 
+ * Además, registra cada paso en la tabla.
+ * 
+ * @param {number} x0 - Coordenada inicial X
+ * @param {number} y0 - Coordenada inicial Y
+ * @param {number} x1 - Coordenada final X
+ * @param {number} y1 - Coordenada final Y
+ */
+function bresenham(x0, y0, x1, y1) {
+
+    // Diferencias absolutas
+    let dx = Math.abs(x1 - x0);
+    let dy = Math.abs(y1 - y0);
+
+    // Dirección de incremento
+    let sx = (x0 < x1) ? 1 : -1;
+    let sy = (y0 < y1) ? 1 : -1;
+
+    // Error inicial
+    let err = dx - dy;
+
+    while (true) {
+
+        // Dibujar punto actual
+        plot(x0, y0);
+
+        // Calcular doble del error
+        let e2 = 2 * err;
+
+        // Registrar en tabla
+        agregarFila(x0, y0, err, e2); // agrega el registro actual a la tabla con los valores de x, y, err y e2 
+
+        // Condición de parada
+        if (x0 === x1 && y0 === y1) break;
+
+        // Ajuste en X
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+
+        // Ajuste en Y
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
 }
