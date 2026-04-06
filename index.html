@@ -26,6 +26,29 @@
 <label>x1: <input type="number" id="x1"></label>
 <label>y1: <input type="number" id="y1"></label>
 
+<!-- Botón que ejecuta el algoritmo -->
+<button onclick="dibujar()">Dibujar</button>
+
+<br><br>
+
+<!-- Canvas donde se dibuja la línea -->
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<!-- Tabla donde se muestran los pasos -->
+<h3>Tabla de iteraciones</h3>
+<table id="tabla">
+    <thead>
+        <tr>
+            <th>Paso</th>
+            <th>x</th>
+            <th>y</th>
+            <th>err</th>
+            <th>e2</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
     
 </body>
 </html>
