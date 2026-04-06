@@ -59,4 +59,32 @@ function dibujarEjes() {
     for (let i = 0; i < canvas.height / escala; i++) {
         ctx.fillText(i, 5, canvas.height - i * escala);
     }
+} 
+// Contador global de pasos del algoritmo
+let paso = 0;
+
+/**
+ * Inserta una fila en la tabla con los valores actuales del algoritmo.
+ * Permite observar el proceso paso a paso.
+ * 
+ * @param {number} x - Coordenada X actual
+ * @param {number} y - Coordenada Y actual
+ * @param {number} err - Error actual
+ * @param {number} e2 - Valor auxiliar (2*err)
+ */
+function agregarFila(x, y, err, e2) {
+
+    const tabla = document.querySelector("#tabla tbody");
+
+    const fila = `
+        <tr>
+            <td>${paso++}</td>
+            <td>${x}</td>
+            <td>${y}</td>
+            <td>${err}</td>
+            <td>${e2}</td>
+        </tr>
+    `;
+
+    tabla.innerHTML += fila;
 }
